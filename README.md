@@ -33,29 +33,66 @@ Mini sistema de arquivos em C com interface interativa. Nesta versão, as opera�
 
 ## Compilação e Execução
 
-### Via Makefile (recomendado):
+### 🐧 Linux Nativo
+
+#### Via Makefile (recomendado):
 ```bash
 make
 ./mini_fs
 ```
 
-### Via script build.sh:
+#### Via script build.sh:
 ```bash
 chmod +x build.sh
 ./build.sh
 ./mini_fs
 ```
 
-### Compilação manual:
+#### Compilação manual:
 ```bash
 gcc -Wall -Wextra -Iinclude -o mini_fs src/main.c src/filesystem.c
 ./mini_fs
 ```
 
-### Limpeza:
+#### Limpeza:
 ```bash
 make clean
 ```
+
+### 🪟 Windows (WSL)
+
+#### Pré-requisitos:
+Instale as ferramentas de desenvolvimento C no WSL:
+```bash
+wsl sudo apt update
+wsl sudo apt install -y build-essential gdb
+```
+
+#### Compilação e execução:
+```bash
+wsl make
+wsl ./mini_fs
+```
+
+Ou compile uma vez e execute várias vezes:
+```bash
+wsl make
+wsl ./mini_fs
+```
+
+#### Limpeza:
+```bash
+wsl make clean
+```
+
+#### 💡 Dica para VS Code:
+Para melhor experiência no VS Code, reabra o projeto diretamente no WSL:
+1. Pressione `F1` ou `Ctrl+Shift+P`
+2. Digite: **"WSL: Reopen Folder in WSL"**
+3. Depois use normalmente:
+   - `Ctrl+Shift+B` para compilar
+   - `F5` para debug
+   - Terminal integrado funcionará nativamente no Linux
 
 ## Exemplo Rápido
 
