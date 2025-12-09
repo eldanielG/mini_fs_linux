@@ -15,7 +15,7 @@ static char current_path[PATH_MAX];
 
 static int join_path(char *dst, size_t dstsz, const char *base, const char *name) {
     size_t blen = strlen(base);
-    int needs_sep = (blen > 0 && base[blen - 1] != '/' && base[blen - 1] != '\\');
+    int needs_sep = (blen > 0 && base[blen - 1] != '/');
     if (snprintf(dst, dstsz, needs_sep ? "%s/%s" : "%s%s", base, name) >= (int)dstsz) {
         return -1;
     }
@@ -30,7 +30,7 @@ static int is_dir(const char *path) {
 
 static int is_valid_component(const char *name) {
     if (!name || !*name) return 0;
-    if (strchr(name, '/') || strchr(name, '\\')) return 0;
+    if (strchr(name, '/')) return 0;
     if (strcmp(name, ".") == 0 || strcmp(name, "..") == 0) return 0;
     return 1;
 }
@@ -69,9 +69,7 @@ int cd(const char *path) {
     if (strcmp(path, "..") == 0) {
         // Não subir acima do root
         if (strcmp(current_path, root_path) == 0) return 0;
-        char *p = strrchr(current_path, '/');
-        char *q = strrchr(current_path, '\\');
-        char *last = p > q ? p : q;
+        char *last = strrchr(current_path, '/');
         if (!last) return 0;
         *last = '\0';
         if (current_path[0] == '\0') {
