@@ -14,6 +14,7 @@ void display_menu() {
     printf("7. Move/Rename File (mv)\n");
     printf("8. Delete File (rm)\n");
     printf("9. Change Permissions (chmod)\n");
+    printf("10. Delete Directory (rmdir)\n");
     printf("0. Exit\n");
     printf("Select an option: ");
 }
@@ -123,6 +124,16 @@ int main() {
                 printf("chmod returned: %d\n", result);
                 break;
             }
+
+            case 10: {
+                char dirname[256];
+                printf("Directory to delete: ");
+                scanf("%s", dirname);
+                int result = rm(dirname);
+                printf("rm returned: %d\n", result);
+                break;
+            }
+
             case 0:
                 printf("Exiting the Mini File System.\n");
                 free_file_system();
